@@ -1,0 +1,491 @@
+<!-- This webpage (c) 2025 Isaac L. Bleaman (isaacbleaman.com)-->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofrut Variable Font Playground</title>
+  <style>
+    @font-face {
+      font-family: 'SoyferBreyt-StretchVF';
+      src: url('SoyferBreyt-StretchVF.ttf') format('truetype');
+    }
+
+    body {
+      font-family: 'SoyferBreyt-StretchVF', sans-serif;
+      direction: rtl;
+      margin: 2rem;
+      background-color: #f7f2e9;
+      color: #3a3a3a;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #5d4037;
+      direction: ltr;
+    }
+
+    h2 {
+        margin-top: 3rem;
+        border-top: 1px solid #e0e0e0;
+        padding-top: 2rem;
+    }
+    
+    h1 + h2 {
+        border-top: none;
+        margin-top: -1rem;
+        font-size: 1.2rem;
+        font-style: italic;
+    }
+
+    .hebrew-text {
+      font-size: 1.75rem;
+      text-align: justify;
+      font-variation-settings: "wdth" 100;
+      line-height: 1.8;
+    }
+
+    .hebrew-text::after {
+      content: "";
+      display: inline-block;
+      width: 100%;
+    }
+
+    .slider {
+      writing-mode: vertical-lr;
+      direction: ltr;
+      width: 1rem;
+      height: 50px;
+      accent-color: #8d6e63;
+    }
+
+    .value {
+      font-family: sans-serif;
+      font-size: 1rem;
+      text-align: center;
+      background-color: #efefef;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      min-width: 3ch;
+    }
+
+    .interactive-paragraph-block {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      max-width: 725px;
+      margin: 0 auto;
+    }
+    
+    .line-and-control-pair {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5rem;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .single-line-control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .character-demo-block {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .character-text-line {
+      font-size: 2.5rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .character-text-line span {
+      cursor: pointer;
+      display: inline-block;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .character-text-line span.selected {
+      color: #8d6e63;
+      transform: scale(1.1);
+    }
+    
+    /* Highlight target letters */
+    .character-text-line span[data-letter="ר"], 
+    .character-text-line span[data-letter="ד"], 
+    .character-text-line span[data-letter="ה"], 
+    .character-text-line span[data-letter="ת"] {
+      background-color: rgba(141, 110, 99, 0.1);
+      border-radius: 2px;
+    }
+    
+    .char-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        direction: ltr;
+    }
+    
+    .explanation {
+        font-family: sans-serif;
+        font-size: 0.9rem;
+        font-style: italic;
+        color: #6d6d6d;
+        margin-bottom: 1.5rem;
+        direction: ltr;
+        text-align: left;
+    }
+    
+    .english-intro {
+        font-family: sans-serif;
+        direction: ltr;
+        text-align: left;
+        max-width: 700px;
+        margin: 2rem auto;
+        line-height: 1.6;
+    }
+
+    /* NEW: Target Letters Showcase */
+    .target-letters-block {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .letter-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      border: 2px solid #f0f0f0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .letter-demo:hover {
+      border-color: #8d6e63;
+      background-color: #fafafa;
+    }
+
+    .big-letter {
+      font-size: 4rem;
+      font-variation-settings: "wdth" 100;
+      transition: font-variation-settings 0.3s ease;
+      margin-bottom: 0.5rem;
+    }
+
+    .letter-name {
+      font-family: sans-serif;
+      font-size: 0.9rem;
+      color: #666;
+      direction: ltr;
+    }
+
+    /* NEW: Before/After Comparison */
+    .comparison-block {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .comparison-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      border: 1px solid #eee;
+      border-radius: 4px;
+    }
+
+    .comparison-side {
+      text-align: center;
+    }
+
+    .comparison-text {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      margin: 1rem 0;
+      padding: 1rem;
+      background-color: #fafafa;
+      border-radius: 4px;
+    }
+
+    .comparison-label {
+      font-family: sans-serif;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #8d6e63;
+      direction: ltr;
+      margin-bottom: 0.5rem;
+    }
+
+    /* NEW: Animation toggle */
+    .animate-letters .big-letter {
+      animation: stretchDemo 3s ease-in-out infinite;
+    }
+
+    @keyframes stretchDemo {
+      0%, 100% { font-variation-settings: "wdth" 100; }
+      50% { font-variation-settings: "wdth" 180; }
+    }
+
+    .animation-toggle {
+      font-family: sans-serif;
+      direction: ltr;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    .animation-button {
+      background: #8d6e63;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .animation-button:hover {
+      background: #6d4c41;
+    }
+  </style>
+</head>
+<body>
+  <h1>Variable-Width Font for <em>Sofrut</em></h1>
+  <h2>A Proof-of-Concept by Isaac L. Bleaman</h2>
+
+  <p class="english-intro">
+    <strong>Process:</strong> I took an existing typeface, Shlomo Stam from the <a href="https://opensiddur.org/help/fonts/">Open Siddur Project</a>, and created a font file in Glyphs 3
+    with variable width (i.e., `wdth` axis, ranging from 100 to 200). I only stretched out four glyphs (דהרת), but others can easily be adjusted, too.
+  </p>
+
+  <p class="english-intro">
+    This page works best on a full-sized display (e.g., laptop).
+  </p>
+
+  <!-- NEW: Target Letters Showcase -->
+  <h2>Target Letters: Individual Stretch Demo</h2>
+  <div class="target-letters-block">
+    <p class="explanation" style="text-align: center;">These are the letters modified to stretch horizontally. Hover over each letter to see it expand!</p>
+    
+    <div class="animation-toggle">
+      <button id="animateBtn" class="animation-button">Start Auto Animation</button>
+    </div>
+    
+    <div class="letters-grid">
+      <div class="letter-demo">
+        <div class="big-letter" data-letter="ד">ד</div>
+        <div class="letter-name">Dalet</div>
+      </div>
+      <div class="letter-demo">
+        <div class="big-letter" data-letter="ר">ר</div>
+        <div class="letter-name">Resh</div>
+      </div>
+      <div class="letter-demo">
+        <div class="big-letter" data-letter="ה">ה</div>
+        <div class="letter-name">He</div>
+      </div>
+      <div class="letter-demo">
+        <div class="big-letter" data-letter="ת">ת</div>
+        <div class="letter-name">Tav</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Before/After Comparison -->
+  <h2>Justification Comparison</h2>
+  <div class="comparison-block">
+    <p class="explanation">This demonstrates how variable width can improve Hebrew justification by reducing awkward spacing between words.</p>
+    
+    <div class="comparison-pair">
+      <div class="comparison-side">
+        <div class="comparison-label">Traditional (Fixed Width)</div>
+        <div class="comparison-text" style="font-variation-settings: 'wdth' 100; text-align: justify;">בחדה בשבת שלושים לחודש אב שנת חמשת</div>
+      </div>
+      <div class="comparison-side">
+        <div class="comparison-label">Width increased to 175</div>
+        <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 175; text-align: justify;">בחדה בשבת שלושים לחודש אב שנת חמשת</div>
+      </div>
+    </div>
+
+    <p class="explanation">Here is an example in Yiddish.</p>
+    <div class="comparison-pair">
+      <div class="comparison-side">
+        <div class="comparison-label">Traditional (Fixed Width)</div>
+        <div class="comparison-text" style="font-variation-settings: 'wdth' 100; text-align: justify;">אין יענע טעג, אַז דער מלך אַחשוֵרוֹש איז געזעסן אױף דעם טראָן פֿון זײַן מלוכה</div>
+      </div>
+      <div class="comparison-side">
+        <div class="comparison-label">Width Increased to 175</div>
+        <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 175; text-align: justify;">אין יענע טעג, אַז דער מלך אַחשוֵרוֹש איז געזעסן אױף דעם טראָן פֿון זײַן מלוכה</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Line-Level Adjustments</h2>
+  <div id="interactive-paragraph" class="interactive-paragraph-block">
+      <p class="explanation">This demo shows how width can be adjusted within individual lines of longer blocks of justified text, offset by automatic adjustments to inter-word spacing.</p>
+      <p class="explanation">Use the sliders on the left to adjust the `wdth` axis for each corresponding line.</p>
+      
+      <div class="line-and-control-pair">
+          <div class="hebrew-text">בחדה בשבת שלושים לחודש אב שנת</div>
+          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+      </div>
+      <div class="line-and-control-pair">
+          <div class="hebrew-text">חמשת אלפים ושבע מאות ושמונים וחמש</div>
+          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+      </div>
+      <div class="line-and-control-pair">
+          <div class="hebrew-text">בברקלי במדינת אמריקה איך</div>
+          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+      </div>
+      <div class="line-and-control-pair">
+          <div class="hebrew-text">החתן פלוני בר פלוני אמר לה להדה</div>
+          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+      </div>
+      <div class="line-and-control-pair">
+          <div class="hebrew-text">כלתן פלונית בת פלוני הוי לי לאנתו</div>
+          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+      </div>
+      <div class="line-and-control-pair">
+          <div class="hebrew-text">כדת משה וישראל ואנא אפלח ואוקיר</div>
+          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+      </div>
+      <div class="line-and-control-pair">
+          <div class="hebrew-text">ואיזון ואפרנס יתיכי ליכי כהלכות</div>
+          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+      </div>
+  </div>
+
+  <h2>Character-by-Character Adjustments</h2>
+  <div class="character-demo-block">
+      <p class="explanation">This demo simulates how a design program (Adobe InDesign or similar) could offer granular control over individual characters. Click any character to select it, then use the slider to adjust its width. Target letters (דהרת) are highlighted.</p>
+      <div id="character-text-line" class="character-text-line">בחדה בשבת שלושים לחודש אב שנת</div>
+      <div class="char-controls">
+          <span>Narrow</span>
+          <input type="range" min="100" max="200" value="100" id="char-slider" style="width: 200px; direction: ltr;">
+          <span>Wide</span>
+          <div id="char-value" class="value">100</div>
+      </div>
+  </div>
+
+  <script>
+    // Existing line-by-line controls
+    document.querySelectorAll('.line-and-control-pair').forEach(pair => {
+        const textLine = pair.querySelector('.hebrew-text');
+        const slider = pair.querySelector('.slider');
+        const valueDisplay = pair.querySelector('.value');
+        
+        if (textLine && slider && valueDisplay) {
+            slider.addEventListener('input', () => {
+                const newWidth = slider.value;
+                textLine.style.fontVariationSettings = `"wdth" ${newWidth}`;
+                valueDisplay.textContent = newWidth;
+            });
+        }
+    });
+
+    // Enhanced character-by-character with target letter highlighting
+    const charTextLine = document.getElementById('character-text-line');
+    const charSlider = document.getElementById('char-slider');
+    const charValue = document.getElementById('char-value');
+    const targetLetters = ['ר', 'ד', 'ה', 'ת'];
+    let selectedChar = null;
+
+    const text = charTextLine.textContent;
+    charTextLine.innerHTML = '';
+    text.split('').forEach(char => {
+        if (char === ' ') {
+            charTextLine.appendChild(document.createTextNode(' '));
+        } else {
+            const span = document.createElement('span');
+            span.textContent = char;
+            span.style.fontVariationSettings = `"wdth" 100`;
+            span.setAttribute('data-letter', char);
+            charTextLine.appendChild(span);
+        }
+    });
+
+    charTextLine.addEventListener('click', (e) => {
+        if (e.target.tagName === 'SPAN') {
+            if (selectedChar) {
+                selectedChar.classList.remove('selected');
+            }
+            selectedChar = e.target;
+            selectedChar.classList.add('selected');
+
+            const currentSettings = selectedChar.style.fontVariationSettings;
+            const currentWidth = currentSettings.match(/(\d+)/)[0];
+            charSlider.value = currentWidth;
+            charValue.textContent = currentWidth;
+        }
+    });
+
+    charSlider.addEventListener('input', () => {
+        if (selectedChar) {
+            const newWidth = charSlider.value;
+            selectedChar.style.fontVariationSettings = `"wdth" ${newWidth}`;
+            charValue.textContent = newWidth;
+        }
+    });
+
+    // NEW: Hover effects for target letters showcase
+    document.querySelectorAll('.letter-demo').forEach(demo => {
+        const letter = demo.querySelector('.big-letter');
+        demo.addEventListener('mouseenter', () => {
+            letter.style.fontVariationSettings = '"wdth" 180';
+        });
+        demo.addEventListener('mouseleave', () => {
+            letter.style.fontVariationSettings = '"wdth" 100';
+        });
+    });
+
+    // NEW: Animation toggle
+    const animateBtn = document.getElementById('animateBtn');
+    const lettersGrid = document.querySelector('.letters-grid');
+    let isAnimating = false;
+
+    animateBtn.addEventListener('click', () => {
+        isAnimating = !isAnimating;
+        if (isAnimating) {
+            lettersGrid.classList.add('animate-letters');
+            animateBtn.textContent = 'Stop Animation';
+        } else {
+            lettersGrid.classList.remove('animate-letters');
+            animateBtn.textContent = 'Start Auto Animation';
+        }
+    });
+  </script>
+</body>
+</html>
