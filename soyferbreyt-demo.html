@@ -124,9 +124,9 @@
     }
     
     /* Highlight target letters */
-    .character-text-line span[data-letter="ר"], 
     .character-text-line span[data-letter="ד"], 
     .character-text-line span[data-letter="ה"], 
+    .character-text-line span[data-letter="ר"], 
     .character-text-line span[data-letter="ת"] {
       background-color: rgba(141, 110, 99, 0.1);
       border-radius: 2px;
@@ -292,7 +292,7 @@
   </p>
 
   <p class="english-intro">
-    This page works best on a full-sized display (e.g., laptop).
+    This page works best on a <strong>full-sized display</strong> (e.g., a laptop).
   </p>
 
   <!-- NEW: Target Letters Showcase -->
@@ -310,12 +310,12 @@
         <div class="letter-name">Dalet</div>
       </div>
       <div class="letter-demo">
-        <div class="big-letter" data-letter="ר">ר</div>
-        <div class="letter-name">Resh</div>
-      </div>
-      <div class="letter-demo">
         <div class="big-letter" data-letter="ה">ה</div>
         <div class="letter-name">He</div>
+      </div>
+      <div class="letter-demo">
+        <div class="big-letter" data-letter="ר">ר</div>
+        <div class="letter-name">Resh</div>
       </div>
       <div class="letter-demo">
         <div class="big-letter" data-letter="ת">ת</div>
@@ -327,15 +327,15 @@
   <!-- Before/After Comparison -->
   <h2>Justification Comparison</h2>
   <div class="comparison-block">
-    <p class="explanation">This demonstrates how variable width can improve Hebrew justification by reducing awkward spacing between words.</p>
+    <p class="explanation">This demonstrates how increased width can improve Hebrew justification by reducing awkward spacing between words.</p>
     
     <div class="comparison-pair">
       <div class="comparison-side">
-        <div class="comparison-label">Traditional (Fixed Width)</div>
+        <div class="comparison-label">Width: 100</div>
         <div class="comparison-text" style="font-variation-settings: 'wdth' 100; text-align: justify;">בחדה בשבת שלושים לחודש אב שנת חמשת</div>
       </div>
       <div class="comparison-side">
-        <div class="comparison-label">Width increased to 175</div>
+        <div class="comparison-label">Width: 175</div>
         <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 175; text-align: justify;">בחדה בשבת שלושים לחודש אב שנת חמשת</div>
       </div>
     </div>
@@ -343,11 +343,11 @@
     <p class="explanation">Here is an example in Yiddish.</p>
     <div class="comparison-pair">
       <div class="comparison-side">
-        <div class="comparison-label">Traditional (Fixed Width)</div>
+        <div class="comparison-label">Width: 100</div>
         <div class="comparison-text" style="font-variation-settings: 'wdth' 100; text-align: justify;">אין יענע טעג, אַז דער מלך אַחשוֵרוֹש איז געזעסן אױף דעם טראָן פֿון זײַן מלוכה</div>
       </div>
       <div class="comparison-side">
-        <div class="comparison-label">Width Increased to 175</div>
+        <div class="comparison-label">Width: 175</div>
         <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 175; text-align: justify;">אין יענע טעג, אַז דער מלך אַחשוֵרוֹש איז געזעסן אױף דעם טראָן פֿון זײַן מלוכה</div>
       </div>
     </div>
