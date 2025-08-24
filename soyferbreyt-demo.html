@@ -40,7 +40,7 @@
     }
 
     .hebrew-text {
-      font-size: 1.75rem;
+      font-size: 1.35rem;
       text-align: justify;
       font-variation-settings: "wdth" 100;
       line-height: 1.8;
@@ -107,7 +107,7 @@
     }
 
     .character-text-line {
-      font-size: 2.5rem;
+      font-size: 2rem;
       line-height: 1.8;
       margin-bottom: 1rem;
     }
@@ -194,7 +194,7 @@
     }
 
     .big-letter {
-      font-size: 4rem;
+      font-size: 3.75rem;
       font-variation-settings: "wdth" 100;
       transition: font-variation-settings 0.3s ease;
       margin-bottom: 0.5rem;
@@ -257,7 +257,7 @@
 
     @keyframes stretchDemo {
       0%, 100% { font-variation-settings: "wdth" 100; }
-      50% { font-variation-settings: "wdth" 180; }
+      50% { font-variation-settings: "wdth" 350; }
     }
 
     .animation-toggle {
@@ -288,7 +288,7 @@
 
   <p class="english-intro">
     <strong>Process:</strong> I took an existing typeface, Shlomo Stam from the <a href="https://opensiddur.org/help/fonts/">Open Siddur Project</a>, and created a font file in Glyphs 3
-    with variable width (i.e., `wdth` axis, ranging from 100 to 200). I only stretched out four glyphs (דהרת), but others can easily be adjusted, too.
+    with variable width (i.e., `wdth` axis, ranging from 100 to 400). I only stretched out four glyphs (דהרת), but others can easily be adjusted, too.
   </p>
 
   <p class="english-intro">
@@ -335,8 +335,8 @@
         <div class="comparison-text" style="font-variation-settings: 'wdth' 100; text-align: justify;">בחדה בשבת שלושים לחודש אב שנת חמשת</div>
       </div>
       <div class="comparison-side">
-        <div class="comparison-label">Width: 175</div>
-        <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 175; text-align: justify;">בחדה בשבת שלושים לחודש אב שנת חמשת</div>
+        <div class="comparison-label">Width: 200</div>
+        <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 200; text-align: justify;">בחדה בשבת שלושים לחודש אב שנת חמשת</div>
       </div>
     </div>
 
@@ -347,8 +347,8 @@
         <div class="comparison-text" style="font-variation-settings: 'wdth' 100; text-align: justify;">אין יענע טעג, אַז דער מלך אַחשוֵרוֹש איז געזעסן אױף דעם טראָן פֿון זײַן מלוכה</div>
       </div>
       <div class="comparison-side">
-        <div class="comparison-label">Width: 175</div>
-        <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 175; text-align: justify;">אין יענע טעג, אַז דער מלך אַחשוֵרוֹש איז געזעסן אױף דעם טראָן פֿון זײַן מלוכה</div>
+        <div class="comparison-label">Width: 250</div>
+        <div class="comparison-text" id="variable-comparison" style="font-variation-settings: 'wdth' 250; text-align: justify;">אין יענע טעג, אַז דער מלך אַחשוֵרוֹש איז געזעסן אױף דעם טראָן פֿון זײַן מלוכה</div>
       </div>
     </div>
   </div>
@@ -360,31 +360,31 @@
       
       <div class="line-and-control-pair">
           <div class="hebrew-text">בחדה בשבת שלושים לחודש אב שנת</div>
-          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+          <div class="single-line-control"><input type="range" min="100" max="400" value="100" class="slider"><div class="value">100</div></div>
       </div>
       <div class="line-and-control-pair">
           <div class="hebrew-text">חמשת אלפים ושבע מאות ושמונים וחמש</div>
-          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+          <div class="single-line-control"><input type="range" min="100" max="400" value="100" class="slider"><div class="value">100</div></div>
       </div>
       <div class="line-and-control-pair">
           <div class="hebrew-text">בברקלי במדינת אמריקה איך</div>
-          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+          <div class="single-line-control"><input type="range" min="100" max="400" value="100" class="slider"><div class="value">100</div></div>
       </div>
       <div class="line-and-control-pair">
           <div class="hebrew-text">החתן פלוני בר פלוני אמר לה להדה</div>
-          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+          <div class="single-line-control"><input type="range" min="100" max="400" value="100" class="slider"><div class="value">100</div></div>
       </div>
       <div class="line-and-control-pair">
           <div class="hebrew-text">כלתן פלונית בת פלוני הוי לי לאנתו</div>
-          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+          <div class="single-line-control"><input type="range" min="100" max="400" value="100" class="slider"><div class="value">100</div></div>
       </div>
       <div class="line-and-control-pair">
           <div class="hebrew-text">כדת משה וישראל ואנא אפלח ואוקיר</div>
-          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+          <div class="single-line-control"><input type="range" min="100" max="400" value="100" class="slider"><div class="value">100</div></div>
       </div>
       <div class="line-and-control-pair">
           <div class="hebrew-text">ואיזון ואפרנס יתיכי ליכי כהלכות</div>
-          <div class="single-line-control"><input type="range" min="100" max="200" value="100" class="slider"><div class="value">100</div></div>
+          <div class="single-line-control"><input type="range" min="100" max="400" value="100" class="slider"><div class="value">100</div></div>
       </div>
   </div>
 
@@ -394,7 +394,7 @@
       <div id="character-text-line" class="character-text-line">בחדה בשבת שלושים לחודש אב שנת</div>
       <div class="char-controls">
           <span>Narrow</span>
-          <input type="range" min="100" max="200" value="100" id="char-slider" style="width: 200px; direction: ltr;">
+          <input type="range" min="100" max="400" value="100" id="char-slider" style="width: 200px; direction: ltr;">
           <span>Wide</span>
           <div id="char-value" class="value">100</div>
       </div>
@@ -464,7 +464,7 @@
     document.querySelectorAll('.letter-demo').forEach(demo => {
         const letter = demo.querySelector('.big-letter');
         demo.addEventListener('mouseenter', () => {
-            letter.style.fontVariationSettings = '"wdth" 180';
+            letter.style.fontVariationSettings = '"wdth" 350';
         });
         demo.addEventListener('mouseleave', () => {
             letter.style.fontVariationSettings = '"wdth" 100';
