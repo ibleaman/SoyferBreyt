@@ -11,6 +11,16 @@
       src: url('SoyferBreyt-StretchVF.ttf') format('truetype');
     }
 
+    @font-face {
+      font-family: 'SoyferBreyt-StretchVF-lamed-top';
+      src: url('SoyferBreyt-StretchVF-lamed-top.ttf') format('truetype');
+    }
+
+    @font-face {
+      font-family: 'SoyferBreyt-StretchVF-lamed-both';
+      src: url('SoyferBreyt-StretchVF-lamed-both.ttf') format('truetype');
+    }
+
     body {
       font-family: 'SoyferBreyt-StretchVF', sans-serif;
       direction: rtl;
@@ -280,6 +290,61 @@
     .animation-button:hover {
       background: #6d4c41;
     }
+
+    /* NEW: Lamed Comparison Section */
+    .lamed-comparison-block {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      border: 1px solid #e0e0e0;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .lamed-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    .lamed-demo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+      border: 2px solid #f0f0f0;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .lamed-demo:hover {
+      border-color: #8d6e63;
+      background-color: #fafafa;
+    }
+
+    .big-lamed {
+      font-size: 4.5rem;
+      font-variation-settings: "wdth" 100;
+      transition: font-variation-settings 0.3s ease;
+      margin-bottom: 1rem;
+    }
+
+    .lamed-description {
+      font-family: sans-serif;
+      font-size: 0.95rem;
+      color: #666;
+      direction: ltr;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    /* Lamed animation toggle */
+    .animate-lameds .big-lamed {
+      animation: stretchDemo 3s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -400,6 +465,33 @@
       </div>
   </div>
 
+  <!-- NEW: Lamed Comparison Section -->
+  <h2>Lamed Variations</h2>
+  <div class="lamed-comparison-block">
+    <p class="explanation" style="text-align: center;">Two different approaches to stretching the lamed (ל). Hover over each to see the stretching effect!</p>
+    
+    <div class="animation-toggle">
+      <button id="animateLameds" class="animation-button">Start Auto Animation</button>
+    </div>
+    
+    <div class="lamed-grid">
+      <div class="lamed-demo">
+        <div class="big-lamed" style="font-family: 'SoyferBreyt-StretchVF-lamed-top', sans-serif;">ל</div>
+        <div class="lamed-description">
+          <strong>Top Only</strong><br>
+          Only the top horizontal stroke extends
+        </div>
+      </div>
+      <div class="lamed-demo">
+        <div class="big-lamed" style="font-family: 'SoyferBreyt-StretchVF-lamed-both', sans-serif;">ל</div>
+        <div class="lamed-description">
+          <strong>Top and Base</strong><br>
+          Both horizontal elements stretch
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Existing line-by-line controls
     document.querySelectorAll('.line-and-control-pair').forEach(pair => {
@@ -471,7 +563,7 @@
         });
     });
 
-    // NEW: Animation toggle
+    // NEW: Animation toggle for original letters
     const animateBtn = document.getElementById('animateBtn');
     const lettersGrid = document.querySelector('.letters-grid');
     let isAnimating = false;
@@ -484,6 +576,33 @@
         } else {
             lettersGrid.classList.remove('animate-letters');
             animateBtn.textContent = 'Start Auto Animation';
+        }
+    });
+
+    // NEW: Hover effects for lamed letters
+    document.querySelectorAll('.lamed-demo').forEach(demo => {
+        const lamed = demo.querySelector('.big-lamed');
+        demo.addEventListener('mouseenter', () => {
+            lamed.style.fontVariationSettings = '"wdth" 350';
+        });
+        demo.addEventListener('mouseleave', () => {
+            lamed.style.fontVariationSettings = '"wdth" 100';
+        });
+    });
+
+    // NEW: Animation toggle for lameds
+    const animateLamedsBtn = document.getElementById('animateLameds');
+    const lamedGrid = document.querySelector('.lamed-grid');
+    let isAnimatingLameds = false;
+
+    animateLamedsBtn.addEventListener('click', () => {
+        isAnimatingLameds = !isAnimatingLameds;
+        if (isAnimatingLameds) {
+            lamedGrid.classList.add('animate-lameds');
+            animateLamedsBtn.textContent = 'Stop Animation';
+        } else {
+            lamedGrid.classList.remove('animate-lameds');
+            animateLamedsBtn.textContent = 'Start Auto Animation';
         }
     });
   </script>
